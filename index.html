@@ -1,42 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Url Shortner</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<html lang="en">
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="icon" type="image/png" href="images/file.png" sizes="16×16 32×32">
-	<h2 style="text-align: center;">URL Shortener</h2>	
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="icon" href="images/file.png">
 </head>
-<body>
-		<div class="row" style="text-align: center;">
-			<form class="col s12">		
-			  <div class="row">
-				<div class="col s12">
-				  <div class="input-field inline">
-					<div class="input-field col s6" style="width: 200%; float: auto;">
-						<i class="material-icons prefix">language</i>
-						<input id="url" type="url" class="validate">
-						<label for="url">Enter URL here...</label>
-						<span class="helper-text" data-error="Enter a valid URL" data-success="right"></span>
-					</div>
-					<div class="input-field col s6">
-						<a class="waves-effect waves-light btn blue-grey" style="border-radius: 15px;"><i class="material-icons left">cloud_upload</i>Shorten</a>
-					</div>
-				  </div>
-				</div>
-			  </div>
-			</form>
-		  </div>
-		  <span> Feature : 
-			  Add analytics section for each link
-		  </span>
-					
+
+<body class="text-center">
+    <h2 class="display-4">URL Shortener</h2>
+    <input class="rounded-pill form-control-lg" type="url" placeholder="Enter URL...." inputmode="url" required=""  style="margin-top: 200px;width: 500px; outline: none;box-shadow: none;">
+    <button class="btn btn-outline-secondary active btn-lg text-left border rounded" data-bss-hover-animate="tada" type="submit">Shorten</button>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <p>Feature : 1 Add analytics section for each link, 2 check if the url is already shorten
+    </p>
 </body>
+
 </html>
