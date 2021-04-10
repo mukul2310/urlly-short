@@ -1,18 +1,19 @@
 {
   "name": "project-1",
   "version": "1.0.0",
-  "description": "",
+  "description": "A URL shortener",
   "main": "index.js",
-  "scripts": {
-    "build-css": "tailwindcss build src/style.css -o public/style.css"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "autoprefixer": "^10.2.3",
     "bootstrap": "^5.0.0-beta1",
     "postcss": "^8.2.4",
     "tailwind": "^4.0.0",
     "tailwindcss": "^2.0.2"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
