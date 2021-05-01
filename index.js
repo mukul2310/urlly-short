@@ -1,38 +1,83 @@
 let express = require('express');
-const db = require('mongodb');
 let app = express();
 let port=8080;
 app.listen(port,()=>
 console.log("Server running"));
-app.use('/images', express.static(__dirname + '/images'));
-app.use('/js', express.static(__dirname + '/js'));
-app.use('/css', express.static(__dirname + '/css'));
-app.get('/', function (req, res) 
+app.use('/',express.static(__dirname+'/public'));
+// app.set('view engine','hbs');
+// app.set('views','public');
+let urlPrev;
+app.use(express.urlencoded({extended:true}))
+app.post('/',(req,res)=>
 {
-  res.sendFile('index.html', { root: '.' });
+  urlPrev=req.body.url;
+  res.redirect('/');
 });
-app.get('/open', function (req, res) 
+app.get('/',(req,res)=>
 {
-  res.redirect(301,"https://bitly.com/");
+  res.render('home',{urlPrev});
 });
-// // The core Firebase JS SDK is always required and must be listed first -->
-// <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
 
-// // TODO: Add SDKs for Firebase products that you want to use
-//      https://firebase.google.com/docs/web/setup#available-libraries -->
-// <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+app.get('/:url',(req,res)=>
+{
+  res.redirect(301,urlPrev);
+});
 
-//   // Your web app's Firebase configuration
-//   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-//   var firebaseConfig = {
-//     apiKey: "AIzaSyAC0C35M7GLMq7avtGimRvReP1wqks-HqY",
-//     authDomain: "url-shortener-e4ec6.firebaseapp.com",
-//     projectId: "url-shortener-e4ec6",
-//     storageBucket: "url-shortener-e4ec6.appspot.com",
-//     messagingSenderId: "506344431642",
-//     appId: "1:506344431642:web:40ac211bc6b19eba21f1a3",
-//     measurementId: "G-X54BSDKSPL"
-//   };
-//   // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
+const admin = require('firebase-admin');
+const serviceAccount = require('./path/to/serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+const db = admin.firestore();
+
+// const snapshot = await db.collection('url').get();
+// snapshot.forEach((doc) => {
+//   console.log(doc.id, '=>', doc.data());
+// });
+
+
+// async function quickstartListen(db) {
+//   // [START quickstart_listen]
+//   // [START firestore_setup_dataset_read]
+//   const snapshot = await db.collection('url').get();
+//   snapshot.forEach((doc) => {
+//     console.log(doc.id, '=>', doc.data());
+//   });
+
+//   // [END firestore_setup_dataset_read]
+//   // [END quickstart_listen]
+// }
+
+// quickstartListen(db);
+
+
+
+
+// async function quickstartAddData(db) {
+//   // [START add_lovelace]
+//   // [START firestore_setup_dataset_pt1]
+//   const docRef = db.collection('users').doc('alovelace');
+
+//   await docRef.set({
+//     first: 'Ada',
+//     last: 'Lovelace',
+//     born: 1815
+//   });
+//   // [END firestore_setup_dataset_pt1]
+//   // [END add_lovelace]
+
+//   // [START add_turing]
+//   // [START firestore_setup_dataset_pt2]
+//   const aTuringRef = db.collection('users').doc('aturing');
+
+//   await aTuringRef.set({
+//     'first': 'Alan',
+//     'middle': 'Mathison',
+//     'last': 'Turing',
+//     'born': 1912
+//   });
+  // [END firestore_setup_dataset_pt2]
+  // [END add_turing]
+// }

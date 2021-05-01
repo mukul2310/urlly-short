@@ -13,13 +13,18 @@
 
 <body class="text-center">
     <h2 class="display-4">URL Shortener</h2>
-    <input class="rounded-pill form-control-lg" type="url" placeholder="Enter URL...." inputmode="url" required=""  style="margin-top: 200px;width: 500px; outline: none;box-shadow: none;">
-    <button class="btn btn-outline-secondary active btn-lg text-left border rounded" data-bss-hover-animate="tada" type="submit">Shorten</button>
+    <form action='/' method="POST">
+        <input name="url" class="rounded-pill form-control-lg" type="url" placeholder="Enter URL...." inputmode="url" required=""  style="margin-top: 200px;width: 500px; outline: none;box-shadow: none;">
+        <button class="btn btn-outline-secondary active btn-lg text-left border rounded" data-bss-hover-animate="tada" type="submit">Shorten</button>
+    </form>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bs-init.js"></script>
     <p>Feature : 1 Add analytics section for each link, 2 check if the url is already shorten,<a href="https://vsit.click/">https://vsit.click/</a><br> use of shared prefrences/cookies if exists like <a href="https://tinyurl.com/app/myurls">https://tinyurl.com/app/myurls</a>
     </p>
+    <div>
+        <a href="{{urlPrev}}">{{urlPrev}}</a>
+    </div>
 </body>
 
 </html>
