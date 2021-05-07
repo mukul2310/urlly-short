@@ -1,12 +1,3 @@
-
-// if(port===8080)
-// {
-//     urlHeader="http://localhost:8080";
-// }
-// else
-// {
-//     urlHeader="https://urlly-short.herokuapp.com"
-// }
 $("form").on("submit",(e)=>
 {
     e.preventDefault();
