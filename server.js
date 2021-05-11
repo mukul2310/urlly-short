@@ -9,51 +9,45 @@ if (!admin.apps.length) {
 }
 
 const db = admin.firestore();
-const bcrypt = require('bcrypt');
+let crypto = require('crypto');
 
 
 function encryptingURL(longUrl)
 {
-  let a=new Date().getTime()%100;
-  return "def"+a;
+  let name = longUrl;
+  let hash = crypto.createHash('md5').update(name).digest('hex');
+  return hash.slice(0,4);
 }
 
-async function addDocument(data) 
+async function addDocument(data,id) 
 {
-
-  const res = await db.collection('url').add(data);
-
-  // console.log('Added document with ID: ', res.id);
-
-  // console.log('Add: ', res);
+  // converting longurl to base64
+  let longUrl = data.original_url;
+  let encodedLongUrl =Buffer.from(longUrl).toString('base64');
+  data.original_url=encodedLongUrl;
+// console.log('"' + data + '" converted to Base64 is "' + base64data + '"');
+  const res = await db.collection('url').doc(id).set(data);
 }
-
-
-async function getAll() 
-{
-  const col = db.collection('url');
-  const allData = await col.get();
-  allData.forEach(doc => {
-    // console.log(doc.id, '=>', doc.data());
-  });
-}
-
-
 
 async function getOne(req) 
 {
-  const col = db.collection('url');
-  const allData = await col.get();
-  // required_shortcode=JSON.parse(JSON.stringify(req))
-  allData.forEach(doc => 
+  const col = db.collection('url').doc(req);
+  const doc= await col.get();
+  let result;
+  if(doc.data().expiration_date>new Date().getTime())
   {
-    if(doc.data().hash_url==req && doc.data().expiration_date>new Date().getTime())
-    {
-      // console.log(doc.data());
-      result=doc.data().original_url;
-    }
-  });
+    //decode the url
+    let data = doc.data().original_url;
+    let buff = Buffer.from(data, 'base64');
+    let text = buff.toString('ascii');
+
+    result=text;
+  }
+  else
+  {
+    const res = await col.delete();
+  }
   return result;
 }
 
-module.exports={addDocument,getAll,getOne,encryptingURL};
+module.exports={addDocument,getOne,encryptingURL};
