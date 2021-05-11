@@ -1,9 +1,10 @@
 function onSubmit()
 {
     if($("#url").val()!="")
+    {
         $('#result_div').removeAttr('hidden');
-    $('#expire_toast').toast('show');
-
+        $('#expire_toast').toast('show');
+    }
 }
 function copyText()
 {
