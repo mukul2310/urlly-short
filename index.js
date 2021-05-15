@@ -11,10 +11,13 @@ app.use(express.urlencoded({extended:true}))
 app.post('/api',(req,res)=>
 {
   doc=JSON.parse(JSON.stringify(req.body));
-  let shortUrl=serv.encryptingURL(doc.original_url);
+  let shortUrl;
+  if(doc.custom_url==undefined)
+    shortUrl=serv.encryptingURL(doc.original_url);
+  else
+    shortUrl=doc.custom_url;
   serv.addDocument(doc,shortUrl);
   res.send(shortUrl);
-  
 });
 
 app.get('/:url',(req,res)=>

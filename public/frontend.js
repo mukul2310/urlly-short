@@ -3,7 +3,14 @@ function onSubmit()
     if($("#url").val()!="")
     {
         $('#result_div').removeAttr('hidden');
-        $('#expire_toast').toast('show');
+        if($("#custom_url").val()!="")
+        {
+            $("#pass_custom_url").attr("required",true);
+        }
+        else
+        {
+            $("#pass_custom_url").removeAttr("required");
+        }
     }
 }
 function copyText()

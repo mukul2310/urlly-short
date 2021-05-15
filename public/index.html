@@ -17,36 +17,26 @@
         <div class="text-center">
             <h2 class="display-4">URL Shortener</h2>
         </div>
-        <form>
-            <div class="row d-flex align-items-center justify-content-center" style="margin-top: 200px;">
+        <form class="row d-flex align-items-center justify-content-center" style="margin-top: 200px;">
                 <div class="col-md-auto">
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <input class="form-control rounded-pill" type="url" id="url" placeholder="Enter URL...." inputmode="url" required style="width: 500px;">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input class="form-control rounded-pill" type="text" id="custom_url" placeholder="Enter custom URL(Optional)" style="width: 500px;">
+                    </div>
+                
+                    <div class="form-group mb-3">
+                        <input class="form-control rounded-pill" type="password" id="pass_custom_url" placeholder="Password for Custom short link(Required for custom link)" style="width: 500px;">
                     </div>
                 </div>
                 <div class="col-md-auto">
                     <button id="submitBtn" class="btn btn-secondary btn-lg" data-bss-hover-animate="tada" type="submit" onclick="onSubmit()">Shorten</button>
                 </div>
-            </div>
         </form>
     </div>
-    <form class="">
-        <!-- <div class="mt-6">
-            <label for="url" class="form-label">URL</label>
-        </div> -->
-        <!-- <div class="mb-3">
-            <label for="custom_url" class="form-label">Custom URL</label>
-            <input class="form-control-lg" id="custom_url" placeholder="Custom short link(Optional)" inputmode="text" aria-describedby="passwordHelpBlock">
-            <div id="passwordHelpBlock" class="form-text">
-                Your url must be 4 characters long
-            </div>
-        </div>
-        <div class="mb-3">
-            <label for="custom_pass" class="form-label">Password for Custom URL</label>
-            <input class="form-control-lg" id="custom_pass" placeholder="Password for Custom short link(Required)" type="password" inputmode="password">
-        </div> -->
-        <!-- <button id="submitBtn" class="btn btn-outline-secondary active btn-lg text-left border rounded" data-bss-hover-animate="tada" type="submit">Shorten</button> -->
-    </form>
+    
     
     <div class="container-fluid text-center" id="result_div" hidden>
         <div>
@@ -54,6 +44,7 @@
             <!-- <a class="btn p-0" onclick="copyText()"><svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path d="M15,14H9a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2Zm0-4H11a1,1,0,0,0,0,2h4a1,1,0,0,0,0-2Zm2-6H15.82A3,3,0,0,0,13,2H11A3,3,0,0,0,8.18,4H7A3,3,0,0,0,4,7V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V7A3,3,0,0,0,17,4ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm8,14a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V7A1,1,0,0,1,7,6H8V7A1,1,0,0,0,9,8h6a1,1,0,0,0,1-1V6h1a1,1,0,0,1,1,1Z"/></svg></a> -->
         </div>
     </div>
+    
     <!-- Toast -->
     <div class="toast-container" style="position: absolute; bottom: 10px; right: 10px;">
         <div class="toast align-items-center text-white" id="copy_toast" role="alert" aria-live="assertive" aria-atomic="true" style="background-color: rgb(53, 170, 62);">
