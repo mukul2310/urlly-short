@@ -12,7 +12,7 @@ app.post('/api',(req,res)=>
 {
   doc=JSON.parse(JSON.stringify(req.body));
   let shortUrl;
-  if(doc.custom_url==undefined)
+  if(!doc.custom_url)
     shortUrl=serv.encryptingURL(doc.original_url);
   else
     shortUrl=doc.custom_url;
