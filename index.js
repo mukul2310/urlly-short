@@ -24,8 +24,14 @@ app.get('/:url',(req,res)=>
 {
   (async () => 
   {
-    const myURL = new URL(await serv.getOne(req.params.url));
-    res.redirect(301,myURL.href);
+    try 
+    {
+      const myURL = new URL(await serv.getOne(req.params.url));
+      res.redirect(myURL.href);  
+    } catch (err) 
+    {
+      res.redirect('404.html')      
+    }
   })()
   
 });
