@@ -1,0 +1,31 @@
+body
+{
+    background-image: linear-gradient(to right, rgb(239, 250, 223) , rgb(247, 220, 245));
+}
+nav.navbar
+{
+    border-color: black;
+    border-width: 3px;
+}
+div.container-fluid form, form
+{
+    margin-top: 150px;
+}
+div.container-fluid form div div input, form.d-flex div div input
+{
+    width: 500px;
+}
+.toast-container
+{
+    position: absolute; 
+    bottom: 10px;
+    right: 10px;
+}
+#copy_toast
+{
+    background-color: rgb(53, 170, 62);
+}
+#expire_toast
+{
+    background-color: rgb(255, 164, 27);
+}

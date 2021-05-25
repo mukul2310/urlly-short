@@ -1,4 +1,4 @@
-$("form").on("submit",(e)=>
+$("#url_form").on("submit",(e)=>
 {
     e.preventDefault();
     const url=$("#url").val();
@@ -39,3 +39,31 @@ $("form").on("submit",(e)=>
         }
     });
 });
+
+$('#home').on('click',()=>
+{
+    $.ajax(
+        {
+            url:"/",
+            method:"GET",
+            success: function(response)
+            {
+                $("body").empty().append(response);
+            }
+        }
+    )
+})
+
+$('#myurl').on('click',()=>
+{
+    $.ajax(
+        {
+            url:"/analytics",
+            method:"GET",
+            success: function(response)
+            {
+                $("body").empty().append(response);
+            }
+        }
+    )
+})
