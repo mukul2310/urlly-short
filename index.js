@@ -8,9 +8,9 @@ app.use('/',express.static(__dirname+'/public'));
 app.use('/analytics',express.static(__dirname+'/public/analytics.html'));
 app.use(express.urlencoded({extended:true}))
 
-app.post('/api',(req,res)=>
+app.post('/create_short_url',(req,res)=>
 {
-  doc=JSON.parse(JSON.stringify(req.body));
+  doc=req.body;
   let shortUrl;
   if(!doc.custom_url)
     shortUrl=serv.encryptingURL(doc.original_url);
@@ -31,6 +31,22 @@ app.get('/:url',(req,res)=>
     } catch (err) 
     {
       res.sendFile('404.html', {root: __dirname+'/public' })
+    }
+  })()
+});
+
+app.post('/authentication',(req,res)=>
+{
+  serv.getOneByPass(req);
+  (async () => 
+  {
+    try 
+    {
+      let result=await serv.getOneByPass(req);
+      res.send(result); 
+    } catch (err) 
+    {
+      res.send('404')
     }
   })()
 });

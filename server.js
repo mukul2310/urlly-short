@@ -1,4 +1,3 @@
-
 const admin = require('firebase-admin');
 const serviceAccount = require('./path/to/serviceAccountKey.json');
 
@@ -11,6 +10,7 @@ if (!admin.apps.length) {
 const db = admin.firestore();
 let crypto = require('crypto');
 
+//write a function for encoding a url to base-62 and take initial 4 characters to make slug
 
 function encryptingURL(longUrl)
 {
@@ -50,4 +50,29 @@ async function getOne(req)
   return result;
 }
 
-module.exports={addDocument,getOne,encryptingURL};
+async function getOneByPass(req)
+{
+  const id=req.body.custom_url;
+  const pass=req.body.pass;
+  const col = db.collection('url').doc(id);
+  const doc= await col.get();
+  let result=new Object();
+  if(doc.data().expiration_date>new Date().getTime()&&doc.data().pass_custom_url==pass)
+  {
+    //decode the url
+    let data = doc.data().original_url;
+    let buff = Buffer.from(data, 'base64');
+    let text = buff.toString('ascii');
+    result.longUrl=text;
+    result.shortUrl=doc.data().custom_url;
+    result.expiry=doc.data().expiration_date;
+    return result;
+  }
+  else
+  {
+    const res = await col.delete();
+    throw new EvalError;
+  }
+}
+
+module.exports={addDocument,getOne,encryptingURL,getOneByPass};

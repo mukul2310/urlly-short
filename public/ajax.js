@@ -3,8 +3,8 @@ $("#url_form").on("submit",(e)=>
     e.preventDefault();
     const url=$("#url").val();
     const customUrl=$("#custom_url").val();
-    const exp_date=new Date().getTime()+15552000000;//6 months after creation
-    const passCustomUrl=$("#pass_custom_url").val();
+    const exp_date=new Date().getTime()+Number(15778800000);//6 months after creation
+    const passCustomUrl=$("#pass").val();
     let data;
     if(customUrl!="")
     {
@@ -26,7 +26,7 @@ $("#url_form").on("submit",(e)=>
     }
     $.ajax(
     {
-        url:"/api",
+        url:"/create_short_url",
         data:data,
         method:"POST",
         contentType:"application/x-www-form-urlencoded",
@@ -40,30 +40,62 @@ $("#url_form").on("submit",(e)=>
     });
 });
 
-$('#home').on('click',()=>
-{
-    $.ajax(
-        {
-            url:"/",
-            method:"GET",
-            success: function(response)
-            {
-                $("body").empty().append(response);
-            }
-        }
-    )
-})
+// $('#home').on('click',()=>
+// {
+//     $.ajax(
+//         {
+//             url:"/",
+//             method:"GET",
+//             success: function(response)
+//             {
+//                 $("body").empty().append(response);
+//             }
+//         }
+//     )
+// })
 
-$('#myurl').on('click',()=>
+// $('#myurl').on('click',()=>
+// {
+//     $.ajax(
+//         {
+//             url:"/analytics",
+//             method:"GET",
+//             success: function(response)
+//             {
+//                 $("body").empty().append(response);
+//             }
+//         }
+//     )
+// })
+
+
+$("#second_form").on('submit',(e)=>
 {
+    e.preventDefault();
+    const custom_url= $("#second_custom_url").val();
+    const pass=$("#second_pass").val();
+    let data=
+    {
+        custom_url:custom_url,
+        pass:pass,
+    }
     $.ajax(
         {
-            url:"/analytics",
-            method:"GET",
-            success: function(response)
+            url:'/authentication',
+            method:"POST",
+            data:data,
+            success:function(response)
             {
-                $("body").empty().append(response);
+                $("table").removeAttr("hidden");
+                $("#table_short").empty().append(response.shortUrl);
+                $("#table_org").empty().append(response.longUrl);
+                $("#table_exp").empty().append(new Date(Number(response.expiry)).toString());
+            },
+            error:function(error)
+            {
+                $("#form_error").empty().append(error);
             }
+
         }
     )
 })

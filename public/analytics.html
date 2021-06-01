@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="images/favicon 1.ico">
-    <script src="ajax.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script defer src="js/bs-init.js"></script>
+    <script defer src="frontend.js"></script>
+    <script defer src="ajax.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light border-bottom">
@@ -23,30 +27,103 @@
             </button>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <button class="btn btn-outline-light text-black-50" aria-current="page" id="home">Home</a>
+                    <li class="nav-item m-1">
+                        <a class="btn btn-outline-light text-black-50" aria-current="page" href="/" id="home">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <button class="btn btn-outline-light text-black-50" aria-current="page" id="myurl">My URLs</a>
+                    <li class="nav-item m-1">
+                        <a class="btn btn-outline-light text-black-50" aria-current="page" href="/analytics" id="myurl">My URLs</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="text-center">
-        <h2 class="display-4">Enter URL</h2>
+        <h2 class="display-4">Analytics/Edit</h2>
     </div>
-    <form class="d-flex align-items-center justify-content-center" id="analytics_form">
+    <form class="d-flex align-items-center justify-content-center" id="second_form">
         <div class="text-center">
             <div class="form-group mb-2">
-                <input class="form-control rounded-pill" type="text" id="analytics_custom_url" placeholder="Enter custom url">
+                <input class="form-control rounded-pill" type="text" id="second_custom_url" placeholder="Enter custom url" required>
             </div>
         
             <div class="form-group mb-2">
-                <input class="form-control rounded-pill" type="password" id="analytics_pass_custom_url" placeholder="Password">
+                <input class="form-control rounded-pill" type="password" id="second_pass" placeholder="Password" required>
             </div>
-            <button id="analyticsSubmitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit">Shorten</button>
+            <button id="secondSubmitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit">Submit</button>
         </div>
+        <span id="form_error">
+
+        </span>
     </form>
+    <div class="container-fluid">
+        <div class="col-sm-12">
+              <div class="flex-center">
+                <table class="table table-hover table-bordered border-2" hidden>
+                    <thead class="table-active text-center">
+                        <tr>
+                            <th>Shorten Link</th>
+                            <th>Original Link</th>
+                            <th>Expiration Date</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr>
+                            <td id="table_short"></td>
+                            <td id="table_org"></td>
+                            <td id="table_exp"></td>
+                            <td><a data-bs-toggle="modal" href="#modal_edit" onclick="openEditModal()">Edit</a></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                Total clicks
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+              </div>
+        </div>
+    </div>
+    <div id="modal_edit" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">        
+                    <h4 class="modal-title">Edit the URL</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="col s12">
+                        <div>
+                            <div class="mb-3">
+                                <label for="modal_short" class="col-form-label">Change Short Url</label>
+                                <input id="modal_short" class="form-control" type="text" min="0" placeholder="Change Short Url" disabled>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="modal_original" class="col-form-label">Change Original url</label>
+                                <input id="modal_original" inputmode="url" class="form-control" type="url" required placeholder="Change Original Url">
+                                <div class="text-danger" id="error_org" hidden>
+                                    Please enter correct url
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="modal_pass" class="col-form-label">Change Password</label>
+                                <input id="modal_pass" class="form-control" type="password" required placeholder="Enter Password">
+                                <div class="text-danger" id="error_pass" hidden>
+                                    Please enter length greater than 0
+                                </div>
+                            </div>
+                      </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-warning text-white" onclick="editURL();">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

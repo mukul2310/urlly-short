@@ -22,3 +22,12 @@ function copyText()
     temp.remove();
     $('#copy_toast').toast('show');
 };
+function openEditModal()
+{
+    $("#modal_short").val($("#table_short").html());
+    $("#modal_original").val($("#table_org").html());
+}
+function editURL()
+{
+    
+}
