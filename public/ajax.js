@@ -13,7 +13,8 @@ $("#url_form").on("submit",(e)=>
             original_url:url,
             expiration_date:exp_date,
             custom_url:customUrl,
-            pass_custom_url:passCustomUrl
+            pass_custom_url:passCustomUrl,
+            clicks:0
         };
     }
     else
@@ -21,7 +22,8 @@ $("#url_form").on("submit",(e)=>
         data=
         {
             original_url:url,
-            expiration_date:exp_date
+            expiration_date:exp_date,
+            clicks:0
         };
     }
     $.ajax(
@@ -90,6 +92,7 @@ $("#second_form").on('submit',(e)=>
                 $("#table_short").empty().append(response.shortUrl);
                 $("#table_org").empty().append(response.longUrl);
                 $("#table_exp").empty().append(new Date(Number(response.expiry)).toString());
+                $("#table_clicks").empty().append("Total clicks "+response.clicks);
             },
             error:function(error)
             {

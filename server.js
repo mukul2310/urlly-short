@@ -33,6 +33,7 @@ async function getOne(req)
 {
   const col = db.collection('url').doc(req);
   const doc= await col.get();
+  await col.update({clicks: Number(doc.data().clicks)+1});
   let result;
   if(doc.data().expiration_date>new Date().getTime())
   {
@@ -40,7 +41,6 @@ async function getOne(req)
     let data = doc.data().original_url;
     let buff = Buffer.from(data, 'base64');
     let text = buff.toString('ascii');
-
     result=text;
   }
   else
@@ -66,6 +66,7 @@ async function getOneByPass(req)
     result.longUrl=text;
     result.shortUrl=doc.data().custom_url;
     result.expiry=doc.data().expiration_date;
+    result.clicks=doc.data().clicks;
     return result;
   }
   else

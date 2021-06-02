@@ -41,32 +41,24 @@
             </div>
         </div>
     </nav>
-
-    <div class="container-fluid">
-        <div class="text-center">
-            <h2 class="display-4">URL Shortener</h2>
-        </div>
-        <form class="row d-flex align-items-center justify-content-center" id="url_form">
-                <div class="col-md-auto text-center">
-                    <div class="row form-group mb-3">
-                        <label for="url" class="col-sm-2 col-form-label">Enter Url</label>
-                        <input class="col-sm-10 form-control rounded-pill" type="url" id="url" placeholder="https://www.some-big-url.com/much-more-bigger?" inputmode="url" required>
-                    </div>
-
-                    <div class="row form-group mb-3">
-                        <label for="custom_url" class="col-sm-2 col-form-label">https://urlly-short.herokuapp.com/</label>
-                        <input class="col-sm-10 form-control rounded-pill" type="text" id="custom_url" placeholder="abcd(Optional)">
-                    </div>
-                
-                    <div class="row form-group mb-3">
-                        <label for="pass" class="col-sm-2 col-form-label">Password for custom alias</label>
-                        <input class="col-sm-10 form-control rounded-pill" type="password" id="pass" placeholder="123(Required for custom alias)">
-                    </div>
-                    <button id="submitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit" onclick="onSubmit()">Shorten</button>
-                </div>
-        </form>
+    <div class="text-center">
+        <h2 class="display-4">URL Shortener</h2>
     </div>
-    
+    <form class="d-flex align-items-center justify-content-center flex-column mb-3" id="url_form">
+        <div class="row form-group mb-3">
+            <label for="url" class="form-label">Enter long url to shorten</label>
+            <input class="form-control rounded-pill" type="url" id="url" placeholder="https://www.some-big-url.com/much-more-bigger?" inputmode="url" required>
+        </div>
+        <div class="row form-group mb-3">
+            <label for="custom_url" class="form-label">urlly-short.herokuapp.com/</label>
+            <input class="form-control rounded-pill" type="text" id="custom_url" placeholder="abcd(Optional)">
+        </div>
+        <div class="row form-group mb-3">
+            <label for="pass" class="form-label">Password for custom alias</label>
+            <input class="form-control rounded-pill" type="password" id="pass" placeholder="123(Required for custom alias)">
+        </div>
+        <button id="submitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit" onclick="onSubmit()">Shorten</button>
+    </form>    
     
     <div class="container-fluid text-center" id="result_div" hidden>
         <div>
