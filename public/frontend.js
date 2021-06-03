@@ -11,6 +11,7 @@ function onSubmit()
         {
             $("#pass_custom_url").removeAttr("required");
         }
+        //one ajax function for data validation of short url
     }
 }
 function copyText()
@@ -26,8 +27,4 @@ function openEditModal()
 {
     $("#modal_short").val($("#table_short").html());
     $("#modal_original").val($("#table_org").html());
-}
-function editURL()
-{
-    
 }
