@@ -7,7 +7,7 @@ nav.navbar
     border-color: black;
     border-width: 3px;
 }
-div.container-fluid form, #second_form
+#url_form, #second_form
 {
     margin-top: 150px;
 }

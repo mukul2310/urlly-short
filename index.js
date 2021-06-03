@@ -37,7 +37,6 @@ app.get('/:url',(req,res)=>
 
 app.post('/authentication',(req,res)=>
 {
-  serv.getOneByPass(req);
   (async () => 
   {
     try 
@@ -50,3 +49,18 @@ app.post('/authentication',(req,res)=>
     }
   })()
 });
+
+app.post('/update',(req,res)=>
+{
+  (async () => 
+  {
+    try 
+    {
+      await serv.updateData(req);
+      res.send('200')
+    } catch (err) 
+    {
+      res.send('404');
+    }
+  })()
+})

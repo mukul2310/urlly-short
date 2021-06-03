@@ -92,7 +92,7 @@ $("#second_form").on('submit',(e)=>
                 $("#table_short").empty().append(response.shortUrl);
                 $("#table_org").empty().append(response.longUrl);
                 $("#table_exp").empty().append(new Date(Number(response.expiry)).toString());
-                $("#table_clicks").empty().append("Total clicks "+response.clicks);
+                $("#table_clicks").empty().append(response.clicks);
             },
             error:function(error)
             {
@@ -102,3 +102,49 @@ $("#second_form").on('submit',(e)=>
         }
     )
 })
+function editURL()
+{
+    const org_link=$("#modal_original").val();   
+    const pass=$("#modal_pass").val();
+    const cus_link=$("#modal_short").val();
+    let data
+    if(org_link=="")
+    {
+        $("#error_org").removeAttr("hidden");
+    }
+    if(org_link!="")
+    {
+        $("#error_org").attr("hidden",true);
+    }
+    if(pass==="")
+    {
+        data=
+        {
+            original_url:org_link,
+            pass:$("#second_pass").val(),
+            custom_url:cus_link
+        }
+    }
+    else
+    {
+        data=
+        {
+            original_url:org_link,
+            pass:pass,
+            custom_url:cus_link
+        }
+    }
+    $.ajax(
+        {
+            url:'/update',
+            method:"POST",
+            data:data,
+            success:function()
+            {
+                $("table").removeAttr("hidden");
+                $("#table_org").empty().append(org_link);
+                $('#modal_edit').modal('toggle');
+            }
+        }
+    )
+}

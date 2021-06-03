@@ -47,7 +47,7 @@
         </div>
     
         <div class="row form-group mb-3">
-            <label for="second_pass" class="form-label">Password of custom url </label>
+            <label for="second_pass" class="form-label">Password of custom alias </label>
             <input class="form-control rounded-pill" type="password" id="second_pass" placeholder="Password" required>
         </div>
         <button id="secondSubmitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit">Submit</button>
@@ -64,6 +64,7 @@
                             <th>Shorten Link</th>
                             <th>Original Link</th>
                             <th>Expiration Date</th>
+                            <th>Total clicks</th>
                             <th>Options</th>
                         </tr>
                     </thead>
@@ -72,16 +73,10 @@
                             <td id="table_short"></td>
                             <td id="table_org"></td>
                             <td id="table_exp"></td>
+                            <td id="table_clicks"></td>
                             <td><a data-bs-toggle="modal" href="#modal_edit" onclick="openEditModal()">Edit</a></td>
                         </tr>
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <td id="table_clicks">
-                                Total clicks
-                            </td>
-                        </tr>
-                    </tfoot>
                 </table>
               </div>
         </div>
@@ -112,15 +107,15 @@
                             <div class="mb-3">
                                 <label for="modal_pass" class="col-form-label">Change Password</label>
                                 <input id="modal_pass" class="form-control" type="password" required placeholder="Enter Password">
-                                <div class="text-danger" id="error_pass" hidden>
-                                    Please enter length greater than 0
+                                <div class="text-info" id="error_pass">
+                                    Password will remain same if left blank
                                 </div>
                             </div>
                       </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-warning text-white" onclick="editURL();">Submit</button>
+                <button type="button" class="btn btn-warning text-white" onclick="editURL()">Submit</button>
                 </div>
             </div>
         </div>
