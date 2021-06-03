@@ -134,17 +134,20 @@ function editURL()
             custom_url:cus_link
         }
     }
-    $.ajax(
-        {
-            url:'/update',
-            method:"POST",
-            data:data,
-            success:function()
+    if(org_link!="")
+    {
+        $.ajax(
             {
-                $("table").removeAttr("hidden");
-                $("#table_org").empty().append(org_link);
-                $('#modal_edit').modal('toggle');
+                url:'/update',
+                method:"POST",
+                data:data,
+                success:function()
+                {
+                    $("table").removeAttr("hidden");
+                    $("#table_org").empty().append(org_link);
+                    $('#modal_edit').modal('toggle');
+                }
             }
-        }
-    )
+        )
+    }
 }
