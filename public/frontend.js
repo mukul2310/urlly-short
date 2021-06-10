@@ -5,11 +5,11 @@ function onSubmit()
         $('#result_div').removeAttr('hidden');
         if($("#custom_url").val()!="")
         {
-            $("#pass_custom_url").attr("required",true);
+            $("#pass").attr("required",true);
         }
         else
         {
-            $("#pass_custom_url").removeAttr("required");
+            $("#pass").removeAttr("required");
         }
         //one ajax function for data validation of short url
     }

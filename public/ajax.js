@@ -5,9 +5,50 @@ $("#url_form").on("submit",(e)=>
     const customUrl=$("#custom_url").val();
     const exp_date=new Date().getTime()+Number(15778800000);//6 months after creation
     const passCustomUrl=$("#pass").val();
-    let data;
+    let data,flag=false;
+    function checkAlias(str)
+    {
+        for(i=0;i<str.length;i++)
+        {
+            let c=str.charAt(i);
+            if((c<'a'||c>'z')&&(c<'A'||c>'Z')&&(c<'0'||c>'9'))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     if(customUrl!="")
     {
+        if(!checkAlias(customUrl))
+        {
+            $("#error_alias").removeAttr("hidden");
+            flag=true;
+        }
+        else
+        {
+            $("#error_alias").attr("hidden",true);   
+        }
+        if(customUrl.length<4)
+        {
+            $("#error_alias1").removeAttr("hidden");
+            flag=true;
+        }
+        else
+        {
+            $("#error_alias1").attr("hidden",true);
+        }
+        if(passCustomUrl.length<3)
+        {
+            $("#error_pass").removeAttr("hidden");
+            flag=true;
+        }
+        else
+        {
+            $("#error_pass").attr("hidden",true);
+        }    
+        if(flag)
+        return;
         data=
         {
             original_url:url,
