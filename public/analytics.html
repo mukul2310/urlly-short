@@ -41,14 +41,14 @@
         <h2 class="display-4">Analytics/Edit</h2>
     </div>
     <form class="d-flex align-items-center justify-content-center flex-column mb-3" id="second_form">
-        <div class="row form-group mb-3">
-            <label for="second_custom_url" class="form-label">urlly-short.herokuapp.com/</label>
-            <input class="form-control rounded-pill" type="text" id="second_custom_url" placeholder="Enter custom url" required>
+        <div class="input-group flex-nowrap mb-3">
+            <span class="input-group-text">urlly-short.herokuapp.com/</span>
+            <input class="form-control" type="text" id="second_custom_url" placeholder="Enter custom url" required>
         </div>
-    
-        <div class="row form-group mb-3">
-            <label for="second_pass" class="form-label">Password of custom alias </label>
-            <input class="form-control rounded-pill" type="password" id="second_pass" placeholder="Password" required>
+        
+        <div class="input-group flex-nowrap mb-3">
+            <span class="input-group-text">Password</span>
+            <input class="form-control" type="password" id="second_pass" placeholder="Enter password" required>
         </div>
         <button id="secondSubmitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit">Submit</button>
         <span id="form_error">
@@ -61,7 +61,7 @@
                 <table class="table table-hover table-bordered border-2" hidden>
                     <thead class="table-active text-center">
                         <tr>
-                            <th>Shorten Link</th>
+                            <th>Custom alias</th>
                             <th>Original Link</th>
                             <th>Expiration Date</th>
                             <th>Total clicks</th>
