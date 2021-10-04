@@ -14,11 +14,23 @@ let crypto = require('crypto');
 
 //write a function for encoding a url to base-62 and take initial 4 characters to make slug
 
-function encryptingURL(longUrl)
+function encryptingURL(longUrl) //taking first 4 characters
 {
-  let name = longUrl;
-  let hash = crypto.createHash('md5').update(name).digest('hex');
+  const name = longUrl;
+  const hash = crypto.createHash('md5').update(name).digest('hex');
   return hash.slice(0,4);
+}
+function encryptingURLRandom(longUrl)  //taking random 4 consecutive characters
+{
+  const name = longUrl;
+  const hash = crypto.createHash('md5').update(name).digest('hex');
+  let num;
+  num = Math.floor(Math.random() * 10); // Returns a random integer from 0 to 9
+  while(num>hash.length-5)
+  {
+    num = Math.floor(Math.random() * 10); // Returns a random integer from 0 to 9
+  }
+  return hash.slice(num,num+4);
 }
 function encodingURL(longUrl)
 {
@@ -83,6 +95,19 @@ async function getOneByPass(req)
   }
 }
 
+async function checkIfAlreadyPresent(req)
+{
+  try 
+  {
+    const col = db.collection(collection).doc(req);
+    const doc= await col.get();
+    return doc.data();
+  }
+  catch (error) 
+  {
+    return false;    
+  }
+}
 async function updateData(req)
 {
   const id=req.body.custom_url;
@@ -92,4 +117,4 @@ async function updateData(req)
   await col.update({original_url: longUrl,pass_custom_url:pass});
 }
 
-module.exports={addDocument,getOne,encryptingURL,getOneByPass,updateData};
+module.exports={addDocument,getOne,encryptingURL,encryptingURLRandom,encodingURL,getOneByPass,updateData, checkIfAlreadyPresent};

@@ -53,6 +53,9 @@
             <span class="input-group-text">urlly-short.herokuapp.com/</span>
             <input class="form-control" type="text" id="custom_url" placeholder="abcd(Optional/Analytics)">
         </div>
+            <div class="text-danger" id="validationFeedback" hidden>
+                Please try some other custom url this one is already used.
+            </div>
             <div class="text-danger" id="error_alias" hidden>
                 No special characters allowed. Only A-Z,a-z,0-9 are allowed
             </div>
@@ -95,7 +98,9 @@
             </div>
         </div>
       </div>
-
+      <div class="fixed-bottom text-center mb-2">
+          <h3>Made in India &#10084;</h3><a href="https://github.com/mukul2310/urlly-short" target='_blank' rel='noopener noreferrer'><img src="https://img.icons8.com/nolan/50/github.png" alt="Github"/></a>
+      </div>
     <!-- <p>Feature : 1 Add analytics section for each link, 2 check if the url is already shorten,<a href="https://vsit.click/">https://vsit.click/</a><br> use of shared prefrences/cookies if exists like <a href="https://tinyurl.com/app/myurls">https://tinyurl.com/app/myurls</a>/You should put in guard functions to prevent any kind of SQL injection type attack.<br> edit and analytics</p> -->
 </body>
 </html>
