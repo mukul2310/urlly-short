@@ -67,7 +67,7 @@ app.post('/authentication',(req,res)=>
       res.send(result); 
     } catch (err) 
     {
-      res.send('404')
+      res.send(null);
     }
   })()
 });
@@ -79,6 +79,20 @@ app.post('/update',(req,res)=>
     try 
     {
       await serv.updateData(req);
+      res.send('200')
+    } catch (err) 
+    {
+      res.send('404');
+    }
+  })()
+})
+app.post('/delete',(req,res)=>
+{
+  (async () => 
+  {
+    try 
+    {
+      await serv.deleteData(req.body.custom_url);
       res.send('200')
     } catch (err) 
     {

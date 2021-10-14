@@ -50,10 +50,8 @@
             <span class="input-group-text">Password</span>
             <input class="form-control" type="password" id="second_pass" placeholder="Enter password" required>
         </div>
+        <span id="form_error" class="text-danger"></span>
         <button id="secondSubmitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit">Submit</button>
-        <span id="form_error">
-
-        </span>
     </form>
     <div class="container-fluid">
         <div class="col-sm-12">
@@ -74,7 +72,7 @@
                             <td id="table_org"></td>
                             <td id="table_exp"></td>
                             <td id="table_clicks"></td>
-                            <td><a data-bs-toggle="modal" href="#modal_edit" onclick="openEditModal()">Edit</a></td>
+                            <td><a data-bs-toggle="modal" href="#modal_edit" onclick="openEditModal()">Edit</a>  <a data-bs-toggle="modal" href="#modal_delete">Delete</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -116,6 +114,25 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-warning text-white" onclick="editURL()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal_delete" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">        
+                    <h4 class="modal-title">Remove the URL</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        Are you sure, you want to delete URL?
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" onclick="deleteURL()">Yes</button>
+                <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal" aria-label="Close">No</button>
                 </div>
             </div>
         </div>
