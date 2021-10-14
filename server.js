@@ -117,4 +117,10 @@ async function updateData(req)
   await col.update({original_url: longUrl,pass_custom_url:pass});
 }
 
-module.exports={addDocument,getOne,encryptingURL,encryptingURLRandom,encodingURL,getOneByPass,updateData, checkIfAlreadyPresent};
+async function deleteData(req)
+{
+  const col = db.collection(collection).doc(req);
+  await col.delete();
+}
+
+module.exports={addDocument,getOne,encryptingURL,encryptingURLRandom,encodingURL,getOneByPass,updateData, checkIfAlreadyPresent, deleteData};

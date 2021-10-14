@@ -139,17 +139,22 @@ $("#second_form").on('submit',(e)=>
             data:data,
             success:function(response)
             {
-                $("table").removeAttr("hidden");
-                $("#table_short").empty().append(response.shortUrl);
-                $("#table_org").empty().append(response.longUrl);
-                $("#table_exp").empty().append(new Date(Number(response.expiry)).toString());
-                $("#table_clicks").empty().append(response.clicks);
-            },
-            error:function(error)
-            {
-                $("#form_error").empty().append(error);
+                if(response)
+                {
+                    $("table").removeAttr("hidden");
+                    $("#table_short").empty().append(response.shortUrl);
+                    $("#table_org").empty().append(response.longUrl);
+                    $("#table_exp").empty().append(new Date(Number(response.expiry)).toString());
+                    $("#table_clicks").empty().append(response.clicks);
+                    $("#form_error").empty();
+                }
+                else
+                {
+                    const error = "Either Short url does not exist or password is wrong";
+                    $("#form_error").empty().append(error);
+                    $("table").attr("hidden",true);
+                }
             }
-
         }
     )
 })
@@ -201,4 +206,23 @@ function editURL()
             }
         )
     }
+}
+function deleteURL()
+{
+    const cus_link=$("#second_custom_url").val();
+    const data = {
+        custom_url : cus_link
+    };
+    $.ajax(
+        {
+            url:'/delete',
+            method:"POST",
+            data:data,
+            success:function()
+            {
+                $("table").attr("hidden",true);
+                $('#modal_delete').modal('toggle');
+            }
+        }
+    )
 }
