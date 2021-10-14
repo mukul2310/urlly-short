@@ -222,6 +222,7 @@ function deleteURL()
             {
                 $("table").attr("hidden",true);
                 $('#modal_delete').modal('toggle');
+                $('#delete_toast').toast('show');
             }
         }
     )

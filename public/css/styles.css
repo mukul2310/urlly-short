@@ -25,6 +25,10 @@ div.container-fluid form div div input, form.d-flex div div input
 {
     background-color: rgb(53, 170, 62);
 }
+#delete_toast
+{
+    background-color: rgb(53, 170, 62);
+}
 #expire_toast
 {
     background-color: rgb(255, 164, 27);
