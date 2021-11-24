@@ -42,3 +42,9 @@ div.input-group
     width: 50%; 
     border-radius: 10px;
 }
+.abs
+{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
