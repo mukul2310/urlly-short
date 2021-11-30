@@ -51,4 +51,8 @@ div.input-group
       width: 100%;
       margin-top: 0;
     }
+    div.input-group
+    {
+        width: 100%;
+    }
 }
