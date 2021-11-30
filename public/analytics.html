@@ -40,19 +40,21 @@
     <div class="text-center">
         <h2 class="display-4">Analytics/Edit</h2>
     </div>
-    <form class="d-flex align-items-center justify-content-center flex-column mb-3" id="second_form">
-        <div class="input-group flex-nowrap mb-3">
-            <span class="input-group-text">urlly-short.herokuapp.com/</span>
-            <input class="form-control" type="text" id="second_custom_url" placeholder="Enter custom url" required>
-        </div>
-        
-        <div class="input-group flex-nowrap mb-3">
-            <span class="input-group-text">Password</span>
-            <input class="form-control" type="password" id="second_pass" placeholder="Enter password" required>
-        </div>
-        <span id="form_error" class="text-danger"></span>
-        <button id="secondSubmitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <form class="d-flex align-items-center justify-content-center flex-column mb-3" id="second_form">
+            <div class="input-group mb-3">
+                <span class="input-group-text col-25">Custom URL</span>
+                <input class="form-control col-75" type="text" id="second_custom_url" placeholder="urlly-short.herokuapp.com/" required>
+            </div>
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text col-25">Password</span>
+                <input class="form-control col-75" type="password" id="second_pass" placeholder="***" required>
+            </div>
+            <span id="form_error" class="text-danger"></span>
+            <button id="secondSubmitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit">Submit</button>
+        </form>
+    </div>
     <div class="container-fluid">
         <div class="col-sm-12">
               <div class="flex-center">

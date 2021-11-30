@@ -44,35 +44,36 @@
     <div class="text-center">
         <h2 class="display-4">URL Shortener</h2>
     </div>
-    <form class="d-flex align-items-center justify-content-center flex-column mb-3" id="url_form">
-        <div class="input-group flex-nowrap mb-3">
-            <span class="input-group-text">Enter url to shorten</span>
-            <input class="form-control" type="url" id="url" placeholder="https://www.some-big-url.com/much-more-bigger?" inputmode="url" required>
-        </div>
-        <div class="input-group flex-nowrap mb-3">
-            <span class="input-group-text">urlly-short.herokuapp.com/</span>
-            <input class="form-control" type="text" id="custom_url" placeholder="abcd(Optional/Analytics)">
-        </div>
-            <div class="text-danger" id="validationFeedback" hidden>
-                Please try some other custom url this one is already used.
+    <div class="container">
+        <form class="d-flex align-items-center justify-content-center flex-column mb-3" id="url_form">
+            <div class="input-group mb-3">
+                <span class="input-group-text col-25">Big URL</span>
+                <input class="form-control col-75" type="url" id="url" placeholder="https://" inputmode="url" required>
             </div>
-            <div class="text-danger" id="error_alias" hidden>
-                No special characters allowed. Only A-Z,a-z,0-9 are allowed
+            <div class="input-group mb-3">
+                <span class="input-group-text col-25">Custom URL(Optional)</span>
+                <input class="form-control col-75" type="text" id="custom_url" placeholder="urlly-short.herokuapp.com/">
             </div>
-            <div class="text-danger" id="error_alias1" hidden>
-                Minimum length of alias should be 4
+                <div class="text-danger" id="validationFeedback" hidden>
+                    Please try some other custom url this one is already used.
+                </div>
+                <div class="text-danger" id="error_alias" hidden>
+                    No special characters allowed. Only A-Z,a-z,0-9 are allowed
+                </div>
+                <div class="text-danger" id="error_alias1" hidden>
+                    Minimum length of alias should be 4
+                </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text col-25">Password for Custom URL</span>
+                <input class="form-control col-75" type="password" id="pass" placeholder="***">
             </div>
-        <div class="input-group flex-nowrap mb-3">
-            <span class="input-group-text">Password</span>
-            <input class="form-control" type="password" id="pass" placeholder="***(Required for custom alias)">
-        </div>
-            <div class="text-danger align-self-auto" id="error_pass" hidden>
-                Minimum length of password should be 3
-            </div>
-        <button id="submitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit" onclick="onSubmit()">Shorten</button>
-    </form>    
-    
-    <div class="container-fluid text-center" id="result_div" hidden>
+                <div class="text-danger align-self-auto" id="error_pass" hidden>
+                    Minimum length of password should be 3
+                </div>
+            <button id="submitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit" onclick="onSubmit()">Shorten</button>
+        </form>
+    </div>
+    <div class="container-fluid text-center mt-0 mb-5" id="result_div" hidden>
         <div>
             <span id="result"></span>
             <!-- <a class="btn p-0" onclick="copyText()"><svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path d="M15,14H9a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2Zm0-4H11a1,1,0,0,0,0,2h4a1,1,0,0,0,0-2Zm2-6H15.82A3,3,0,0,0,13,2H11A3,3,0,0,0,8.18,4H7A3,3,0,0,0,4,7V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V7A3,3,0,0,0,17,4ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm8,14a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V7A1,1,0,0,1,7,6H8V7A1,1,0,0,0,9,8h6a1,1,0,0,0,1-1V6h1a1,1,0,0,1,1,1Z"/></svg></a> -->
