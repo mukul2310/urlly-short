@@ -46,3 +46,9 @@ div.input-group
     width: 50%; 
     border-radius: 10px;
 }
+@media screen and (max-width: 992px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+}
