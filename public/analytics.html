@@ -4,12 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Urlly</title>
+    <title>Urlly - A URL Shortener</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="images/favicon 1.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <script defer src="js/bs-init.js"></script>
     <script defer src="frontend.js"></script>
@@ -42,21 +43,29 @@
         </div>
     </nav>
     <div class="text-center">
-        <h2 class="display-4">Analytics/Edit</h2>
+        <h2 class="display-4">My URLs</h2>
     </div>
-    <div class="container">
-        <form class="d-flex align-items-center justify-content-center flex-column mb-3" id="second_form">
-            <div class="input-group mb-3">
+    <div>
+        <form novalidate class="d-flex align-items-center justify-content-center flex-column mb-3" id="second_form">
+            <div data-tip="Just enter your custom url, for eg: if your url is 'urlly-short.herokuapp.com/done', then just enter 'done'" class="input-group mb-3">
                 <span class="input-group-text col-25">Custom URL</span>
                 <input class="form-control col-75" type="text" id="second_custom_url" placeholder="urlly-short.herokuapp.com/" required>
             </div>
-            
+            <div class="text-danger" id="error_alias2" hidden>
+                No special characters allowed. Only A-Z,a-z,0-9 are allowed
+            </div>
+            <div class="text-danger" id="error_alias3" hidden>
+                Minimum length of alias should be 4
+            </div>
             <div class="input-group mb-3">
                 <span class="input-group-text col-25">Password</span>
                 <input class="form-control col-75" type="password" id="second_pass" placeholder="***" required>
             </div>
-            <span id="form_error" class="text-danger"></span>
+            <div class="text-danger" id="error_alias4" hidden>
+                Minimum length of password should be 3
+            </div>
             <button id="secondSubmitBtn" class="btn btn-outline-light btn-lg text-black-50" data-bss-hover-animate="tada" type="submit">Submit</button>
+            <span id="form_error" class="text-danger"></span>
         </form>
     </div>
     <div class="container-fluid">
@@ -78,7 +87,7 @@
                             <td id="table_org"></td>
                             <td id="table_exp"></td>
                             <td id="table_clicks"></td>
-                            <td><a data-bs-toggle="modal" href="#modal_edit" onclick="openEditModal()">Edit</a>  <a data-bs-toggle="modal" href="#modal_delete">Delete</a></td>
+                            <td><a data-bs-toggle="modal" href="#modal_edit" onclick="openEditModal()"><span class="material-symbols-outlined">edit</span></a>  <a data-bs-toggle="modal" href="#modal_delete"><span class="material-symbols-outlined">delete</span></a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -153,7 +162,7 @@
             </div>
         </div>
     </div>
-    <div class="text-center">
+    <div class="text-center footer">
         <h3>Made in India &#10084;</h3><a href="https://github.com/mukul2310/urlly-short" target='_blank' rel='noopener noreferrer'><img src="https://img.icons8.com/nolan/50/github.png" alt="Github"/></a>
     </div>
 </body>

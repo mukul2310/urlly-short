@@ -1,6 +1,7 @@
 $("#url_form").on("submit",(e)=>
 {
     e.preventDefault();
+    $("#validationFeedback").attr('hidden',true);
     const url=$("#url").val();
     const customUrl=$("#custom_url").val();
     const exp_date=new Date().getTime()+Number(15778800000);//6 months after creation
@@ -20,19 +21,29 @@ $("#url_form").on("submit",(e)=>
     }
     if(customUrl!="")
     {
-        if(!checkAlias(customUrl))
+        const checkedAlias = checkAlias(customUrl);
+        if(!checkedAlias)
         {
+            $("#custom_url").addClass('is-invalid');
             $("#error_alias").removeAttr("hidden");
             flag=true;
         }
         else
         {
-            $("#error_alias").attr("hidden",true);   
+            $("#error_alias").attr("hidden",true);
+            $("#custom_url").removeClass('is-invalid');
+
         }
         if(customUrl.length<4)
         {
             $("#error_alias1").removeAttr("hidden");
+            $("#custom_url").addClass('is-invalid');
             flag=true;
+        }
+        else if(customUrl.length > 4 && checkedAlias)
+        {
+            $("#error_alias1").attr("hidden",true);
+            $("#custom_url").removeClass('is-invalid');
         }
         else
         {
@@ -41,11 +52,13 @@ $("#url_form").on("submit",(e)=>
         if(passCustomUrl.length<3)
         {
             $("#error_pass").removeAttr("hidden");
+            $("#pass").addClass('is-invalid');
             flag=true;
         }
         else
         {
             $("#error_pass").attr("hidden",true);
+            $("#pass").removeClass('is-invalid');
         }    
         if(flag)
         return;
@@ -127,6 +140,62 @@ $("#second_form").on('submit',(e)=>
     e.preventDefault();
     const custom_url= $("#second_custom_url").val();
     const pass=$("#second_pass").val();
+    let flag = false;
+    function checkAlias(str)
+    {
+        for(i=0;i<str.length;i++)
+        {
+            let c=str.charAt(i);
+            if((c<'a'||c>'z')&&(c<'A'||c>'Z')&&(c<'0'||c>'9'))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    $("#form_error").empty()
+    $("table").attr("hidden",true);
+    const checkedAlias = checkAlias(custom_url)
+    if(!checkedAlias)
+    {
+        $("#error_alias2").removeAttr("hidden");
+        $("#second_custom_url").addClass('is-invalid');
+        flag=true;
+    }
+    else
+    {
+        $("#error_alias2").attr("hidden",true); 
+        $("#second_custom_url").removeClass('is-invalid');  
+    }
+    if(custom_url.length<4)
+    {
+        $("#error_alias3").removeAttr("hidden");
+        $("#second_custom_url").addClass('is-invalid');
+        flag=true;
+    }
+    else if(custom_url.length > 4 && checkedAlias)
+    {
+        $("#error_alias3").attr("hidden",true);
+        $("#second_custom_url").removeClass('is-invalid');  
+    }
+    else
+    {
+        $("#error_alias3").attr("hidden",true);
+    }
+    if(pass.length<3)
+    {
+        $("#error_alias4").removeAttr("hidden");
+        $("#second_pass").addClass('is-invalid');
+        flag=true;
+    }
+    else
+    {
+        $("#error_alias4").attr("hidden",true);
+        $("#second_pass").removeClass('is-invalid');
+
+    }
+    if(flag)
+        return;
     let data=
     {
         custom_url:custom_url,
@@ -153,6 +222,8 @@ $("#second_form").on('submit',(e)=>
                     const error = "Either Short url does not exist or password is wrong";
                     $("#form_error").empty().append(error);
                     $("table").attr("hidden",true);
+                    $("#second_custom_url").addClass('is-invalid');
+                    $("#second_pass").addClass('is-invalid');
                 }
             }
         }

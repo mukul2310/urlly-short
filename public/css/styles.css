@@ -1,11 +1,42 @@
-body
+html 
 {
-    background-image: linear-gradient(to right, rgb(239, 250, 223) , rgb(247, 220, 245));
+    height: 100%;
 }
-form
+body 
 {
-    padding-bottom: 100px;    /* height of footer */
+    height: 100%;
+    margin: 0;
+    background-image: linear-gradient(40deg, rgb(248, 208, 255) , rgb(195, 250, 237));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+[data-tip]:after {
+	display:none;
+	content:attr(data-tip);
+	position:absolute;
+	top:35px;
+	left:0px;
+	padding:5px 8px;
+	background:#a8d7ff;
+	color:rgb(0, 0, 0);
+	z-index:9;
+	font-size: 0.75em;
+	height:auto;
+	line-height:18px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	white-space:nowrap;
+	word-wrap:normal;
+}
+[data-tip]:hover:before,
+[data-tip]:hover:after {
+	display:block;
+}
+/* form
+{
+    padding-bottom: 100px; height of footer
+} */
 nav.navbar
 {
     border-color: black;
@@ -55,4 +86,11 @@ div.input-group
     {
         width: 100%;
     }
+}
+.footer
+{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
