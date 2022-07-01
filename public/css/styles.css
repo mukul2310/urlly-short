@@ -10,29 +10,6 @@ body
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-[data-tip]:after {
-	display:none;
-	content:attr(data-tip);
-	position:absolute;
-	top:35px;
-	left:0px;
-	padding:5px 8px;
-	background:#a8d7ff;
-	color:rgb(0, 0, 0);
-	z-index:9;
-	font-size: 0.75em;
-	height:auto;
-	line-height:18px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	white-space:nowrap;
-	word-wrap:normal;
-}
-[data-tip]:hover:before,
-[data-tip]:hover:after {
-	display:block;
-}
 /* form
 {
     padding-bottom: 100px; height of footer
@@ -42,6 +19,11 @@ nav.navbar
     border-color: black;
     border-width: 3px;
 }
+#home, #myurl
+{
+    width: 100%;
+    border: 2px solid white;
+}
 #url_form, #second_form
 {
     margin-top: 120px;
@@ -50,17 +32,18 @@ div.container-fluid form div div input, form.d-flex div div input
 {
     width: 500px;
 }
+.toast-parent
+{
+    position: relative;
+    height: 100px;
+}
 .toast-container
 {
     position: absolute; 
     bottom: 10px;
     right: 10px;
 }
-#copy_toast
-{
-    background-color: rgb(53, 170, 62);
-}
-#delete_toast
+#edit_toast,#delete_toast,#copy_toast
 {
     background-color: rgb(53, 170, 62);
 }
@@ -76,6 +59,29 @@ div.input-group
 {
     width: 50%; 
     border-radius: 10px;
+}
+[data-tip]:after {
+	display:none;
+	content:attr(data-tip);
+	position:absolute;
+	top:35px;
+	left:0px;
+	padding:5px 8px;
+	background:#ffd8a8;
+	color:rgb(0, 0, 0);
+	z-index:9;
+	font-size: 0.75em;
+	height:auto;
+	line-height:18px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	white-space:nowrap;
+	word-wrap:normal;
+}
+[data-tip]:hover:before,
+[data-tip]:hover:after {
+	display:block;
 }
 @media screen and (max-width: 992px) {
     .col-25, .col-75, input[type=submit] {
@@ -100,6 +106,5 @@ div.input-group
     position: relative;
     bottom: 0px;
     left: 50%;
-    margin-top: 50px;
     transform: translateX(-50%);
 }

@@ -48,7 +48,7 @@
     </div>
     <div>
         <form novalidate class="d-flex align-items-center justify-content-center flex-column mb-3" id="second_form">
-            <div data-tip="If url is 'urlly-short.herokuapp.com/done', then enter 'done'" class="input-group mb-3">
+            <div data-tip="If short url is 'urlly-short.herokuapp.com/done', then write 'done'" class="input-group mb-3">
                 <span class="input-group-text col-25">Custom URL</span>
                 <input class="form-control col-75" type="text" id="second_custom_url" placeholder="done" required>
             </div>
@@ -112,7 +112,7 @@
 
                             <div class="mb-3">
                                 <label for="modal_original" class="col-form-label">Change Original url</label>
-                                <input id="modal_original" inputmode="url" class="form-control" type="url" required placeholder="Change Original Url">
+                                <input id="modal_original" inputmode="url" class="form-control" type="url" placeholder="Change Original Url">
                                 <div class="text-danger" id="error_org" hidden>
                                     Please enter correct url
                                 </div>
@@ -120,9 +120,12 @@
 
                             <div class="mb-3">
                                 <label for="modal_pass" class="col-form-label">Change Password</label>
-                                <input id="modal_pass" class="form-control" type="password" required placeholder="Enter Password">
+                                <input id="modal_pass" class="form-control" type="password" placeholder="Enter Password">
                                 <div class="text-secondary" id="error_pass">
                                     Password will remain same if left blank
+                                </div>
+                                <div class="text-danger" id="error_pass_length" hidden>
+                                    Minimum length of password should be 3
                                 </div>
                             </div>
                       </div>
@@ -153,6 +156,7 @@
             </div>
         </div>
     </div>
+    <div class="toast-parent">
     <div class="toast-container">
         <div class="toast align-items-center text-white" id="delete_toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
@@ -162,7 +166,16 @@
               <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
+        <div class="toast align-items-center text-white" id="edit_toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+              <div class="toast-body">
+                Successfully edited the Custom URL!
+             </div>
+              <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
     </div>
+</div>
     <div class="text-center footer">
         <h3>Made in India &#10084;</h3><a href="https://github.com/mukul2310/urlly-short" target='_blank' rel='noopener noreferrer'><img src="https://img.icons8.com/nolan/50/github.png" alt="Github"/></a>
     </div>
