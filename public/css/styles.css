@@ -6,7 +6,7 @@ body
 {
     height: 100%;
     margin: 0;
-    background-image: linear-gradient(40deg, rgb(248, 208, 255) , rgb(195, 250, 237));
+    background-image: linear-gradient(to bottom, #fdcbf1 50%, #fdcbf1 1%, #f6f3ff 150%);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -80,17 +80,26 @@ div.input-group
 @media screen and (max-width: 992px) {
     .col-25, .col-75, input[type=submit] {
       width: 100%;
+      margin-left: 5px !important;
+      margin-right: 5px;
       margin-top: 0;
     }
     div.input-group
     {
         width: 100%;
     }
+    [data-tip]:hover:before, [data-tip]:hover:after {
+        display: block;
+        position: absolute;
+        top: 100%;
+        margin-left: 5px;
+    }
 }
 .footer
 {
-    position: absolute;
-    bottom: 10px;
+    position: relative;
+    bottom: 0px;
     left: 50%;
+    margin-top: 50px;
     transform: translateX(-50%);
 }
