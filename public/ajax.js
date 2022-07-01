@@ -229,21 +229,35 @@ $("#second_form").on('submit',(e)=>
         }
     )
 })
+function checkIfUrl(link)
+{
+    const pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return !!pattern.test(link);
+}
 function editURL()
 {
     const org_link=$("#modal_original").val();   
     const pass=$("#modal_pass").val();
     const cus_link=$("#modal_short").val();
     let data
-    if(org_link=="")
+    let flag = false;
+
+    if(org_link=="" || !checkIfUrl(org_link))
     {
+        $("#modal_original").addClass('is-invalid');
         $("#error_org").removeAttr("hidden");
     }
-    if(org_link!="")
+    else if(org_link!="" && checkIfUrl(org_link))
     {
+        $("#modal_original").removeClass('is-invalid');
         $("#error_org").attr("hidden",true);
     }
-    if(pass==="")
+    if(pass === "")
     {
         data=
         {
@@ -251,6 +265,14 @@ function editURL()
             pass:$("#second_pass").val(),
             custom_url:cus_link
         }
+        $("#modal_pass").removeClass('is-invalid');
+        $("#error_pass_length").attr("hidden",true);
+    }
+    else if(pass.length < 3)
+    {
+        $("#modal_pass").addClass('is-invalid');
+        $("#error_pass_length").removeAttr("hidden",true);
+        flag=true;
     }
     else
     {
@@ -260,8 +282,11 @@ function editURL()
             pass:pass,
             custom_url:cus_link
         }
+        $("#modal_pass").removeClass('is-invalid');
+        $("#error_pass_length").attr("hidden",true);
     }
-    if(org_link!="")
+
+    if(org_link!="" && checkIfUrl(org_link) && !flag)
     {
         $.ajax(
             {
@@ -272,6 +297,7 @@ function editURL()
                 {
                     $("table").removeAttr("hidden");
                     $("#table_org").empty().append(org_link);
+                    $('#edit_toast').toast('show');
                     $('#modal_edit').modal('toggle');
                 }
             }
