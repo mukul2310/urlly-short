@@ -219,7 +219,7 @@ $("#second_form").on('submit',(e)=>
                 }
                 else
                 {
-                    const error = "Either Short url does not exist or password is wrong";
+                    const error = "Either Short url does not exist/expired/password is wrong";
                     $("#form_error").empty().append(error);
                     $("table").attr("hidden",true);
                     $("#second_custom_url").addClass('is-invalid');

@@ -101,7 +101,9 @@ async function checkIfAlreadyPresent(req)
   {
     const col = db.collection(collection).doc(req);
     const doc= await col.get();
-    return doc.data();
+    if(doc.data().expiration_date>new Date().getTime())
+      return doc.data();
+    return false;
   }
   catch (error) 
   {
