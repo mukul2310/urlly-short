@@ -2,7 +2,6 @@ function onSubmit()
 {
     if($("#url").val()!="")
     {
-        $('#result_div').removeAttr('hidden');
         if($("#custom_url").val()!="")
         {
             $("#pass").attr("required",true);
